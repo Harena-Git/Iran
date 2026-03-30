@@ -42,6 +42,21 @@
         <?php echo $article['content']; ?>
     </section>
 
+    <?php if (!empty($relatedArticles)): ?>
+        <section>
+            <h3>Articles liés</h3>
+            <ul>
+                <?php foreach ($relatedArticles as $related): ?>
+                    <li>
+                        <a href="/article/<?php echo htmlspecialchars($related['slug']); ?>">
+                            <?php echo htmlspecialchars($related['title']); ?>
+                        </a>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+    <?php endif; ?>
+
     <?php if (!empty($tags)): ?>
         <section>
             <h3>Tags</h3>

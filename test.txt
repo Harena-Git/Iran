@@ -5,15 +5,15 @@ tinymce ✅ FAIT (dossier tinymce/ installé en local + intégré dans edit_arti
 10	Backoffice	Gestion Catégorie	categorie-add.php	Ajout catégorie : formulaire HTML	Affichage	ETU003310	5	5	0	✅ FAIT
 11	Backoffice	Gestion Catégorie	traitement-categorie.php	Traitement ajout catégorie en base	Métier	ETU003310	5	5	0	✅ FAIT
 12	Backoffice	Gestion Catégorie	categorie-edit.php	Modification/suppression catégorie	Métier	ETU003310	10	10	0	✅ FAIT
-13	Backoffice	Gestion Article	article-add.php	Formulaire ajout article : champs HTML + images + articles référencés	Affichage	ETU003310	10	10	0	✅ FAIT
+13	Backoffice	Gestion Article	article-add.php	Formulaire ajout article : champs HTML + images + articles référencés	Affichage	ETU003310	10	10	0	100,00%
 14	Backoffice	Gestion Article	article-add.php	Intégration TinyMCE pour saisie HTML du contenu	Métier	ETU003310	20	20	0	✅ FAIT — TinyMCE local chargé, contenu HTML sauvé en base
 15	Backoffice	Gestion Article	traitement-add.php	Upload images sur serveur	Métier	ETU003310	15	15	0	✅ FAIT
-16	Backoffice	Gestion Article	traitement-add.php	Insertion article en base (contenu HTML + images + références)	Métier	ETU003310	10	10	0	✅ FAIT
+16	Backoffice	Gestion Article	traitement-add.php	Insertion article en base (contenu HTML + images + références)	Métier	ETU003310	10	10	0	100,00%
 17	Backoffice	Gestion Article	article-list.php	Liste articles + boutons édition/suppression	Affichage	ETU003310	10	10	0	✅ FAIT
 18	Backoffice	Gestion Article	article-edit.php	Modification article (TinyMCE + images)	Métier	ETU003310	15	15	0	✅ FAIT
 19	Frontoffice	Structure	layout.php	Gabarit commun (header, nav, footer) avec h1-h6 sémantiques	Affichage	ETU003310	15	15	0	✅ FAIT — h1 unique, h2/h3/h4, section, article, time, nav aria-label
 20	Frontoffice	Accueil	index.php	Liste articles par catégorie	Affichage	ETU003310	15	15	0	✅ FAIT
-21	Frontoffice	Article	article.php	Affichage article complet + articles référencés	Affichage	ETU003310	15	15	0	✅ FAIT
+21	Frontoffice	Article	article.php	Affichage article complet + articles référencés	Affichage	ETU003310	15	15	0	100,00%
 22	Frontoffice	SEO	.htaccess	URL Rewriting (ex: /article/guerre-iran-2024)	Technique	ETU003310	15	15	0	✅ FAIT — mod_rewrite + router PHP, URLs propres sans .php
 23	Frontoffice	SEO	toutes pages	Balises méta dynamiques (title, description)	Technique	ETU003310	10	10	0	✅ FAIT — meta description + og:title/description/type/locale
 24	Frontoffice	SEO	toutes pages	Alt sur toutes les images	Technique	ETU003310	5	5	0	✅ FAIT — alt avec fallback titre+site sur toutes les images

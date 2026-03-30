@@ -58,6 +58,8 @@ class AdminController {
         $user = Session::getUser();
         $article = null;
         $articleImages = [];
+        $currentRelatedIds = [];
+        $allArticles = $this->articleModel->getAll();
         
         if (isset($params['id'])) {
             $article = $this->articleModel->getById($params['id']);
@@ -65,6 +67,7 @@ class AdminController {
                 die('Article non trouvé');
             }
             $articleImages = $this->articleModel->getImages($article['id']);
+            $currentRelatedIds = array_column($this->articleModel->getRelatedArticles($article['id']), 'id');
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -77,6 +80,7 @@ class AdminController {
             $excerpt = trim($_POST['excerpt'] ?? '');
             $categoryId = intval($_POST['category_id'] ?? 0);
             $status = in_array($_POST['status'] ?? 'draft', ['draft', 'published']) ? $_POST['status'] : 'draft';
+            $relatedIds = $_POST['related_articles'] ?? [];
 
             if (!$title || !$content) {
                 die('Le titre et le contenu sont obligatoires');
@@ -115,6 +119,11 @@ class AdminController {
                 $this->handleImageUpload($articleId, $_FILES['images']);
             }
 
+            // Synchro des articles référencés
+            if ($articleId) {
+                $this->articleModel->syncRelatedArticles($articleId, $relatedIds);
+            }
+
             header('Location: /admin/articles');
             exit;
         }
@@ -127,7 +136,9 @@ class AdminController {
             'article' => $article,
             'articleImages' => $articleImages,
             'categories' => $categories,
-            'csrf_token' => $csrfToken
+            'csrf_token' => $csrfToken,
+            'allArticles' => $allArticles,
+            'currentRelatedIds' => $currentRelatedIds
         ];
         $this->render('admin/edit_article', $data);
     }

@@ -32,13 +32,15 @@ class ArticleController {
 
         $tags = $this->tagModel->getByArticle($article['id']);
         $images = $this->articleModel->getImages($article['id']);
+        $relatedArticles = $this->articleModel->getRelatedArticles($article['id']);
 
         $data = [
             'title' => $article['title'] . ' - Iran News',
             'description' => $article['excerpt'],
             'article' => $article,
             'tags' => $tags,
-            'images' => $images
+            'images' => $images,
+            'relatedArticles' => $relatedArticles
         ];
 
         $this->render('front/article', $data);
