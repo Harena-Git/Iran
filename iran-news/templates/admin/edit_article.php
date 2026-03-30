@@ -83,12 +83,12 @@
     <script>
         tinymce.init({
             selector: '#content',
-            plugins: 'lists link image',
-            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image',
+            plugins: 'lists link image code',
+            toolbar: 'undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist | link image | code',
             height: 400,
             license_key: 'gpl',
             language: 'fr_FR',
-            menubar: false,
+            menubar: true,
             branding: false
         });
     </script>
