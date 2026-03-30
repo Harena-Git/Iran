@@ -56,6 +56,16 @@ class Router {
 
         // Route /admin
         if ($parts[0] === 'admin') {
+            Session::start();
+            
+            // Actions publiques (pas besoin d'être connecté)
+            if (isset($parts[1]) && in_array($parts[1], ['login', 'logout'])) {
+                $this->currentController = 'auth';
+                $this->currentAction = $parts[1];
+                return;
+            }
+
+            // Autres actions admin (nécessitent l'authentification)
             $this->currentController = 'admin';
             $this->currentAction = isset($parts[1]) ? $parts[1] : 'dashboard';
             
