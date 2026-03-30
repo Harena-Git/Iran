@@ -13,6 +13,7 @@
     <meta property="og:description" content="<?php echo htmlspecialchars($description ?? 'Site d\'information sur la guerre en Iran'); ?>">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="fr_FR">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <header>

@@ -1,3 +1,7 @@
-http://localhost:8000/admin
-
-Fatal error: Cannot redeclare getEnv() in /var/www/config/database.php on line 19
+Dans les affichage de ce projet, comme tu constates
+il n'y a aucune css ou style dans tout les pages de ce projet.
+Voici la demande : 
+1 -  le front de tout le projet doit etre responsive
+2 -  Creer un fichier style.css dans le dossier public/css et appliquer 
+ce style a tout les pages de ce projet (lien via rewriting dans @.htaccess).
+3 -  Ce style va regrouper tout les elements de design du projet.

@@ -1,0 +1,836 @@
+/**
+ * Iran News - Stylesheet Principal
+ * Design Responsive et Moderne
+ */
+
+/* ========== VARIABLES CSS ========== */
+:root {
+    --primary-color: #1a5276;
+    --primary-dark: #154360;
+    --primary-light: #2e86ab;
+    --secondary-color: #c0392b;
+    --accent-color: #d4ac0d;
+    --text-dark: #2c3e50;
+    --text-light: #5d6d7e;
+    --text-muted: #85929e;
+    --bg-light: #f8f9fa;
+    --bg-white: #ffffff;
+    --border-color: #d5dbdb;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.15);
+    --radius: 8px;
+    --radius-sm: 4px;
+    --transition: all 0.3s ease;
+    --max-width: 1200px;
+    --header-height: 70px;
+}
+
+/* ========== RESET & BASE ========== */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========== LIENS & TYPOGRAPHIE ========== */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1.1rem; }
+h6 { font-size: 1rem; }
+
+p {
+    margin-bottom: 1rem;
+}
+
+/* ========== HEADER ========== */
+body > header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+body > header h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.75rem;
+}
+
+body > header h1 a {
+    color: white;
+    text-decoration: none;
+}
+
+body > header h1 a:hover {
+    color: var(--accent-color);
+}
+
+body > header > p {
+    text-align: center;
+    margin: 0.5rem 0 1rem;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+/* Navigation */
+body > header nav {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+body > header nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+body > header nav li {
+    margin: 0;
+}
+
+body > header nav a {
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    display: block;
+}
+
+body > header nav a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    text-decoration: none;
+}
+
+/* ========== MAIN CONTENT ========== */
+main {
+    flex: 1;
+    max-width: var(--max-width);
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* ========== SECTIONS ========== */
+section {
+    margin-bottom: 2rem;
+}
+
+section h2 {
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+section h3 {
+    color: var(--text-dark);
+    margin-top: 1.5rem;
+}
+
+/* ========== ARTICLES (CARDS) ========== */
+article {
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+article:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+article h4, article h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+}
+
+article h4 a, article h3 a {
+    color: var(--primary-color);
+}
+
+article h4 a:hover, article h3 a:hover {
+    color: var(--secondary-color);
+}
+
+article p {
+    color: var(--text-light);
+    margin-bottom: 0.75rem;
+}
+
+article p:last-child {
+    margin-bottom: 0;
+}
+
+/* Article meta info */
+article p span,
+article div > span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+article time {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Lire l'article link */
+article a[href*="article"] {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+/* ========== ARTICLE DETAIL PAGE ========== */
+body > article {
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    box-shadow: var(--shadow);
+}
+
+body > article h2 {
+    color: var(--primary-dark);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+body > article > div {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+body > article figure {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+body > article figure img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+body > article figcaption {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+body > article section {
+    margin: 2rem 0;
+}
+
+/* Related articles & tags */
+body > article ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+body > article ul li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+body > article ul li:last-child {
+    border-bottom: none;
+}
+
+body > article ul li span {
+    display: inline-block;
+    background: var(--primary-light);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+}
+
+/* ========== PAGINATION ========== */
+nav[aria-label="Pagination"] {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+nav[aria-label="Pagination"] a {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    border-radius: var(--radius-sm);
+    font-size: 0.9rem;
+}
+
+nav[aria-label="Pagination"] a:hover {
+    background: var(--primary-dark);
+    text-decoration: none;
+}
+
+nav[aria-label="Pagination"] span {
+    padding: 0.5rem 1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Back navigation */
+nav[aria-label="Retour"] {
+    margin-top: 2rem;
+}
+
+nav[aria-label="Retour"] a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+nav[aria-label="Retour"] a:hover {
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+}
+
+/* ========== TABLES ========== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin: 1.5rem 0;
+}
+
+thead {
+    background: var(--primary-color);
+    color: white;
+}
+
+th, td {
+    padding: 1rem;
+    text-align: left;
+}
+
+th {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+tbody tr:hover {
+    background: var(--bg-light);
+}
+
+tbody td {
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+tbody td a {
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+}
+
+tbody td a[href*="edit"],
+tbody td a[href*="modifier"] {
+    background: var(--primary-light);
+    color: white;
+}
+
+tbody td a[href*="delete"],
+tbody td a[href*="supprimer"] {
+    background: var(--secondary-color);
+    color: white;
+}
+
+tbody td a:hover {
+    opacity: 0.85;
+    text-decoration: none;
+}
+
+/* ========== FORMS ========== */
+form {
+    background: var(--bg-white);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+}
+
+form div {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--bg-white);
+    transition: var(--transition);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(26, 82, 118, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+select {
+    cursor: pointer;
+}
+
+input[type="file"] {
+    padding: 0.5rem;
+}
+
+small {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* Form buttons */
+button,
+input[type="submit"] {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+button:hover,
+input[type="submit"]:hover {
+    background: var(--primary-dark);
+}
+
+button[type="submit"] {
+    background: var(--primary-color);
+}
+
+form a[href*="Annuler"],
+form a:not([type]) {
+    display: inline-block;
+    margin-left: 1rem;
+    padding: 0.75rem 1rem;
+    color: var(--text-light);
+}
+
+form a[href*="Annuler"]:hover,
+form a:not([type]):hover {
+    color: var(--secondary-color);
+}
+
+/* ========== ALERTS / MESSAGES ========== */
+form > div:first-of-type:has(+ div) > div,
+body > div:first-of-type,
+form > div[style*="color"] {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+div[style*="color:red"],
+div:contains("Erreur"),
+form > div:has-text("Erreur") {
+    background: #fadbd8;
+    color: #c0392b;
+    border-left: 4px solid var(--secondary-color);
+}
+
+div[style*="color:green"],
+div:contains("Succès"),
+form > div:has-text("Succès") {
+    background: #d5f5e3;
+    color: #1e8449;
+    border-left: 4px solid #1e8449;
+}
+
+/* ========== ADMIN PAGES SPECIFIC ========== */
+body > h1:first-of-type {
+    text-align: center;
+    color: var(--primary-dark);
+    margin: 2rem 0 1rem;
+}
+
+body > h2 {
+    text-align: center;
+    color: var(--text-light);
+    font-weight: 400;
+    margin-bottom: 2rem;
+}
+
+/* Admin links / buttons at top */
+body > a[href*="admin"]:first-of-type,
+body > a[href*="Créer"]:first-of-type,
+body > a[href*="Ajouter"]:first-of-type {
+    display: inline-block;
+    margin: 1rem 0.5rem 1rem 0;
+    padding: 0.75rem 1.25rem;
+    background: var(--accent-color);
+    color: var(--text-dark);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+}
+
+body > a[href*="admin"]:first-of-type:hover,
+body > a[href*="Créer"]:first-of-type:hover,
+body > a[href*="Ajouter"]:first-of-type:hover {
+    background: #b7950b;
+    text-decoration: none;
+}
+
+/* Secondary admin links */
+body > a[href*="Retour"],
+body > a[href*="tableau"],
+body > a[href*="Annuler"] {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+body > a[href*="Retour"]:hover,
+body > a[href*="tableau"]:hover {
+    color: var(--primary-color);
+}
+
+/* Admin dashboard specific */
+body > div > h2 {
+    color: var(--primary-color);
+    margin-top: 2rem;
+    font-size: 1.25rem;
+}
+
+body > div > ul {
+    list-style: none;
+    background: var(--bg-white);
+    padding: 1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+body > div > ul li {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+body > div > ul li:last-child {
+    border-bottom: none;
+}
+
+body > div > ul li a {
+    display: block;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+body > div > ul li a:hover {
+    padding-left: 0.5rem;
+}
+
+/* Admin info box */
+body > div > p {
+    padding: 0.5rem 0;
+    color: var(--text-light);
+}
+
+body > div > p strong {
+    color: var(--text-dark);
+}
+
+/* Logout & view site links */
+body > p:last-of-type,
+body > p:nth-last-of-type(2) {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+body > p:last-of-type a,
+body > p:nth-last-of-type(2) a {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    background: var(--primary-dark);
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* ========== 404 PAGE ========== */
+section:has(h2:contains("404")) {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+section h2:contains("404") {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    border-bottom: none;
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablet (768px and up) */
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+    
+    body > header nav ul {
+        gap: 1rem;
+    }
+    
+    main {
+        padding: 3rem 2rem;
+    }
+    
+    article {
+        padding: 2rem;
+    }
+    
+    /* Grid for articles on larger screens */
+    main > section > div:has(article) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    main > section > div article {
+        margin-bottom: 0;
+    }
+}
+
+/* Desktop (1024px and up) */
+@media (min-width: 1024px) {
+    body > header {
+        padding: 1.5rem 0;
+    }
+    
+    body > header h1 {
+        font-size: 2rem;
+    }
+    
+    main {
+        padding: 4rem 2rem;
+    }
+    
+    /* Admin tables scroll fix */
+    table {
+        display: table;
+    }
+}
+
+/* Mobile adjustments (under 768px) */
+@media (max-width: 767px) {
+    html {
+        font-size: 14px;
+    }
+    
+    body > header {
+        position: relative;
+    }
+    
+    body > header h1 {
+        font-size: 1.5rem;
+    }
+    
+    body > header nav ul {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    body > header nav a {
+        padding: 0.5rem;
+        text-align: center;
+    }
+    
+    main {
+        padding: 1.5rem 1rem;
+    }
+    
+    article {
+        padding: 1.25rem;
+    }
+    
+    /* Tables - horizontal scroll */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        font-size: 0.9rem;
+    }
+    
+    th, td {
+        padding: 0.75rem;
+    }
+    
+    /* Forms */
+    form {
+        padding: 1.5rem 1rem;
+    }
+    
+    /* Article detail */
+    body > article {
+        padding: 1.5rem;
+    }
+    
+    body > article h2 {
+        font-size: 1.5rem;
+    }
+    
+    /* Pagination */
+    nav[aria-label="Pagination"] {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    /* Dashboard links */
+    body > a[href*="admin"]:first-of-type,
+    body > a[href*="Créer"]:first-of-type,
+    body > a[href*="Ajouter"]:first-of-type {
+        display: block;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+}
+
+/* Small mobile (under 480px) */
+@media (max-width: 480px) {
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.35rem; }
+    h3 { font-size: 1.2rem; }
+    
+    button,
+    input[type="submit"] {
+        width: 100%;
+    }
+    
+    form a[href*="Annuler"],
+    form a:not([type]) {
+        display: block;
+        text-align: center;
+        margin: 1rem 0 0;
+    }
+}
+
+/* ========== UTILITY CLASSES ========== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }

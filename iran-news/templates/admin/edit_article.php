@@ -6,6 +6,7 @@
     <title><?php echo htmlspecialchars($title); ?> - Iran News</title>
     <!-- TinyMCE local -->
     <script src="/tinymce/tinymce/js/tinymce/tinymce.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <h1><?php echo htmlspecialchars($title); ?></h1>
