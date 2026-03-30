@@ -31,16 +31,19 @@ class ArticleController {
         }
 
         $tags = $this->tagModel->getByArticle($article['id']);
+        $images = $this->articleModel->getImages($article['id']);
 
         $data = [
             'title' => $article['title'] . ' - Iran News',
             'description' => $article['excerpt'],
             'article' => $article,
-            'tags' => $tags
+            'tags' => $tags,
+            'images' => $images
         ];
 
         $this->render('front/article', $data);
     }
+
 
     /**
      * Affiche une vue

@@ -123,12 +123,40 @@ class Article {
     }
 
     /**
+     * Récupère tous les articles (pour le backoffice)
+     */
+    public function getAll() {
+        $stmt = $this->db->prepare('
+            SELECT a.id, a.title, a.slug, a.status, a.created_at, a.published_at,
+                   c.name as category_name, u.username as author_name
+            FROM articles a
+            LEFT JOIN categories c ON a.category_id = c.id
+            LEFT JOIN users u ON a.author_id = u.id
+            ORDER BY a.created_at DESC
+        ');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Récupère les images associées à un article
+     */
+    public function getImages($articleId) {
+        $stmt = $this->db->prepare('
+            SELECT id, url, alt FROM images WHERE article_id = :article_id ORDER BY id ASC
+        ');
+        $stmt->execute([':article_id' => $articleId]);
+        return $stmt->fetchAll();
+    }
+
+    /**
      * Supprime un article
      */
     public function delete($id) {
         $stmt = $this->db->prepare('DELETE FROM articles WHERE id = :id');
         return $stmt->execute([':id' => $id]);
     }
+
 
     /**
      * Récupère le nombre total d'articles publiés

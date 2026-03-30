@@ -1,4 +1,4 @@
-version: '3.8'
+# docker-compose.yml - Iran News
 
 services:
   db:
@@ -28,6 +28,8 @@ services:
       - ./src:/var/www/src
       - ./config:/var/www/config
       - ./templates:/var/www/templates
+      - ./tinymce:/var/www/html/tinymce
+      - ./uploads:/var/www/html/uploads
     depends_on:
       - db
     environment:

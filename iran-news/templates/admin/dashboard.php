@@ -10,15 +10,22 @@
     <p>Bienvenue, <?php echo htmlspecialchars($user['username']); ?> !</p>
 
     <div>
-        <a href="/admin/articles">Mes articles</a>
-        <a href="/admin/editarticle">Créer un article</a>
-        <a href="/admin/logout">Déconnexion</a>
+        <h2>Gestion du contenu</h2>
+        <ul>
+            <li><a href="/admin/articles">Tous les articles</a></li>
+            <li><a href="/admin/editarticle">Créer un article</a></li>
+            <li><a href="/admin/categories">Gérer les catégories</a></li>
+            <li><a href="/admin/adduser">Ajouter un utilisateur</a></li>
+        </ul>
     </div>
 
     <div>
         <h2>Informations du compte</h2>
         <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
-        <p>Rôle: Editeur</p>
+        <p>Rôle: <?php echo htmlspecialchars($user['role'] ?? 'Editeur'); ?></p>
     </div>
+
+    <p><a href="/admin/logout">Déconnexion</a></p>
+    <p><a href="/">Voir le site</a></p>
 </body>
 </html>
