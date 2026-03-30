@@ -1,0 +1,80 @@
+/* ========== ADMIN / BACKOFFICE STYLES ========== */
+:root {
+    --admin-sidebar-width: 260px;
+}
+
+/* ========== SIDEBAR ========== */
+.admin-sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+}
+
+.admin-sidebar .nav-link {
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+.admin-sidebar .nav-link:hover:not(.active) {
+    background: rgba(255,255,255,0.1);
+}
+
+/* ========== MAIN ========== */
+main {
+    overflow-y: auto;
+    min-height: 100vh;
+}
+
+/* ========== DASHBOARD CARDS ========== */
+.card {
+    border-radius: 10px;
+}
+
+/* ========== TABLES ========== */
+.table th {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+}
+
+/* ========== FORMS ========== */
+.form-control:focus,
+.form-select:focus {
+    border-color: #ffc107;
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+}
+
+.btn-warning {
+    color: #212529;
+    font-weight: 600;
+}
+
+/* ========== ALERTS ========== */
+.alert {
+    border-radius: 8px;
+    border: none;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 992px) {
+    .admin-sidebar {
+        width: 220px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .d-flex.admin-wrapper {
+        flex-direction: column;
+    }
+
+    .admin-sidebar {
+        width: 100% !important;
+        height: auto;
+        position: relative;
+    }
+}

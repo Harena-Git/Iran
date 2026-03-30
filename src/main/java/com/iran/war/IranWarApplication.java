@@ -1,0 +1,12 @@
+package com.iran.war;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class IranWarApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(IranWarApplication.class, args);
+    }
+}
