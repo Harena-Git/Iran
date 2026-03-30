@@ -139,9 +139,46 @@ class Article {
     }
 
     /**
+     * Récupère les articles référencés par cet article
+     */
+    public function getRelatedArticles($articleId) {
+        $stmt = $this->db->prepare('
+            SELECT a.id, a.title, a.slug
+            FROM articles a
+            JOIN related_articles ra ON a.id = ra.related_id
+            WHERE ra.article_id = :article_id AND a.status = \'published\'
+        ');
+        $stmt->execute([':article_id' => $articleId]);
+        return $stmt->fetchAll();
+    }
+
+    /**
+     * Synchronise les articles référencés
+     */
+    public function syncRelatedArticles($articleId, $relatedIds) {
+        // Supprimer toutes les liaisons existantes pour cet article
+        $stmt = $this->db->prepare('DELETE FROM related_articles WHERE article_id = :article_id');
+        $stmt->execute([':article_id' => $articleId]);
+        
+        // Insérer les nouvelles liaisons
+        if (!empty($relatedIds)) {
+            $stmt = $this->db->prepare('INSERT INTO related_articles (article_id, related_id) VALUES (:article_id, :related_id) ON CONFLICT DO NOTHING');
+            foreach ($relatedIds as $rId) {
+                if ($rId != $articleId) { // Empêche un article d'être référencé avec lui-même
+                    $stmt->execute([
+                        ':article_id' => $articleId,
+                        ':related_id' => $rId
+                    ]);
+                }
+            }
+        }
+    }
+
+    /**
      * Récupère les images associées à un article
      */
     public function getImages($articleId) {
+
         $stmt = $this->db->prepare('
             SELECT id, url, alt FROM images WHERE article_id = :article_id ORDER BY id ASC
         ');

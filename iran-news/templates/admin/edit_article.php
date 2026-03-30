@@ -74,6 +74,20 @@
             <small>Formats acceptés : JPEG, PNG, GIF, WebP. Max 5 Mo par image.</small>
         </div>
 
+        <div>
+            <label for="related_articles">Articles référencés</label>
+            <select id="related_articles" name="related_articles[]" multiple style="width:100%; height:120px;">
+                <?php foreach ($allArticles as $art): ?>
+                    <?php if (!isset($article) || $article['id'] !== $art['id']): ?>
+                        <option value="<?php echo $art['id']; ?>" <?php echo in_array($art['id'], $currentRelatedIds ?? []) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($art['title']); ?>
+                        </option>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+            <small>Maintenez Ctrl/Cmd appuyé pour sélectionner plusieurs articles.</small>
+        </div>
+
         <br>
         <button type="submit">Enregistrer</button>
         <a href="/admin/articles">Annuler</a>

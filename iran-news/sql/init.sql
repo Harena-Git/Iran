@@ -81,6 +81,17 @@ CREATE TABLE article_tags (
 );
 
 -- =========================
+-- TABLE ARTICLES REFERENCES
+-- =========================
+
+CREATE TABLE related_articles (
+    article_id INT REFERENCES articles(id) ON DELETE CASCADE,
+    related_id INT REFERENCES articles(id) ON DELETE CASCADE,
+    PRIMARY KEY (article_id, related_id)
+);
+
+
+-- =========================
 -- TABLE SEO
 -- =========================
 
