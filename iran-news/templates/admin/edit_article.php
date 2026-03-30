@@ -59,8 +59,9 @@
                 <?php foreach ($articleImages as $img): ?>
                     <div style="display:inline-block; margin:5px; text-align:center;">
                         <img src="<?php echo htmlspecialchars($img['url']); ?>" 
-                             alt="<?php echo htmlspecialchars($img['alt']); ?>" 
-                             style="max-width:150px; max-height:150px;">
+                             alt="<?php echo htmlspecialchars($img['alt'] ?? 'Illustration article ' . ($article['title'] ?? '')); ?>"
+                             style="max-width:150px; max-height:150px;"
+                             onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<p class=\'image-error\'>Image non disponible: <?php echo htmlspecialchars($img['alt'] ?? ''); ?></p>');">
                         <br>
                         <small><?php echo htmlspecialchars($img['alt']); ?></small>
                     </div>

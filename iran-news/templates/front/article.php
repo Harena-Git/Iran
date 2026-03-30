@@ -25,9 +25,10 @@
             <?php foreach ($images as $img): ?>
                 <figure>
                     <img src="<?php echo htmlspecialchars($img['url']); ?>" 
-                         alt="<?php echo htmlspecialchars($img['alt'] ?? $article['title'] . ' - Iran News'); ?>"
+                         alt="<?php echo htmlspecialchars($img['alt'] ?? 'Illustration: ' . $article['title'] . ' - Iran News'); ?>"
                          width="800" height="auto"
-                         style="max-width:100%; height:auto;">
+                         style="max-width:100%; height:auto;"
+                         onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<p class=\'image-error\'>Image non disponible: <?php echo htmlspecialchars($img['alt'] ?? $article['title']); ?></p>');">
                     <?php if (!empty($img['alt'])): ?>
                         <figcaption><?php echo htmlspecialchars($img['alt']); ?></figcaption>
                     <?php endif; ?>

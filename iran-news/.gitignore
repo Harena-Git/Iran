@@ -24,6 +24,9 @@ logs/
 uploads/images/*
 !uploads/images/.gitkeep
 
+# Symlink Docker (public/uploads -> /var/www/uploads)
+public/uploads
+
 # Cache PHP
 .cache/
 
