@@ -21,12 +21,14 @@
     <form method="POST">
         <div>
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required autofocus>
+            <input type="email" id="email" name="email" required autofocus 
+                   value="admin@irannews.com">
         </div>
 
         <div>
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" required
+                   value="password">
         </div>
 
         <button type="submit">Connexion</button>
