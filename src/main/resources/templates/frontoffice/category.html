@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head}"></head>
+<body class="bg-light">
+
+<nav th:replace="~{fragments/layout :: navbar}"></nav>
+
+<!-- CATEGORY HEADER -->
+<div class="bg-dark text-white py-4">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-2">
+                <li class="breadcrumb-item">
+                    <a th:href="@{/}" class="text-warning text-decoration-none">Accueil</a>
+                </li>
+                <li class="breadcrumb-item active text-light" aria-current="page"
+                    th:text="${category.name}">Catégorie</li>
+            </ol>
+        </nav>
+        <h1 class="h2 fw-bold">
+            <i class="fas fa-folder-open me-2 text-warning"></i>
+            <span th:text="${category.name}">Catégorie</span>
+        </h1>
+        <p th:if="${category.description != null}" class="text-light opacity-75 mb-0"
+           th:text="${category.description}">Description</p>
+    </div>
+</div>
+
+<div class="container mt-4 pb-5">
+    <div class="row">
+        <!-- ARTICLES -->
+        <div class="col-lg-8">
+            <h2 class="h5 mb-3 border-bottom pb-2">
+                <i class="fas fa-list me-2 text-warning"></i>
+                Articles dans <strong th:text="${category.name}">catégorie</strong>
+                <span class="badge bg-secondary ms-2" th:text="${articles.totalElements}">0</span>
+            </h2>
+
+            <div class="row g-4">
+                <div class="col-md-6" th:each="article : ${articles.content}">
+                    <div class="card h-100 shadow-sm article-card border-0">
+                        <div class="article-img-placeholder d-flex align-items-center justify-content-center bg-secondary"
+                             th:if="${article.imageUrl == null}" style="height:180px;">
+                            <i class="fas fa-newspaper fa-3x text-white opacity-50"></i>
+                        </div>
+                        <img th:if="${article.imageUrl != null}" th:src="${article.imageUrl}"
+                             class="card-img-top" th:alt="${article.title}"
+                             style="height:180px;object-fit:cover;"/>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">
+                                <a th:href="@{'/article/' + ${article.slug}}"
+                                   th:text="${article.title}"
+                                   class="text-dark text-decoration-none stretched-link">Titre</a>
+                            </h5>
+                            <p class="card-text text-muted small flex-grow-1"
+                               th:text="${article.summary}">Résumé</p>
+                            <div class="mt-2">
+                                <small class="text-muted">
+                                    <i class="fas fa-user me-1"></i>
+                                    <span th:text="${article.author != null ? article.author.name : 'Rédaction'}">Auteur</span>
+                                    &nbsp;·&nbsp;
+                                    <i class="fas fa-calendar me-1"></i>
+                                    <span th:if="${article.publishedAt != null}"
+                                          th:text="${#temporals.format(article.publishedAt, 'dd/MM/yyyy')}">Date</span>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- No articles -->
+            <div th:if="${articles.content.isEmpty()}" class="alert alert-info mt-3">
+                <i class="fas fa-info-circle me-2"></i>Aucun article dans cette catégorie pour le moment.
+            </div>
+
+            <!-- PAGINATION -->
+            <nav th:if="${totalPages > 1}" class="mt-4" aria-label="Pagination">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${currentPage == 0} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{'/categorie/' + ${category.slug} + '?page=' + ${currentPage - 1}}">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
+                        class="page-item" th:classappend="${i == currentPage} ? 'active'">
+                        <a class="page-link"
+                           th:href="@{'/categorie/' + ${category.slug} + '?page=' + ${i}}"
+                           th:text="${i + 1}">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="${currentPage >= totalPages - 1} ? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{'/categorie/' + ${category.slug} + '?page=' + ${currentPage + 1}}">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div th:replace="~{fragments/layout :: sidebar}"></div>
+    </div>
+</div>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

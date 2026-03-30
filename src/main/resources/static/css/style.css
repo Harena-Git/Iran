@@ -1,0 +1,151 @@
+/* ========== GLOBAL STYLES ========== */
+:root {
+    --primary: #212529;
+    --accent: #ffc107;
+    --text-dark: #1a1a1a;
+    --text-muted: #6c757d;
+    --bg-light: #f8f9fa;
+    --card-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* ========== HERO ========== */
+.hero-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+}
+
+.hero-section > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== ARTICLE CARDS ========== */
+.article-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.article-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12) !important;
+}
+
+.article-img-placeholder {
+    height: 180px;
+    background: linear-gradient(135deg, #495057, #343a40) !important;
+}
+
+/* ========== ARTICLE CONTENT ========== */
+.article-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #2d2d2d;
+}
+
+.article-content p {
+    margin-bottom: 1.25em;
+}
+
+.article-content h2,
+.article-content h3,
+.article-content h4 {
+    margin-top: 1.75em;
+    margin-bottom: 0.75em;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.article-content strong {
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.article-content blockquote {
+    border-left: 4px solid var(--accent);
+    padding: 0.75rem 1rem;
+    background: #fff9e6;
+    margin: 1.5em 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.article-content ul, .article-content ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1em;
+}
+
+.article-content li {
+    margin-bottom: 0.4em;
+}
+
+/* ========== SIDEBAR ========== */
+.list-group-item a:hover {
+    color: var(--accent) !important;
+}
+
+/* ========== FOOTER ========== */
+footer .footer-link:hover {
+    color: var(--accent) !important;
+}
+
+/* ========== BADGES & CATEGORIES ========== */
+.badge {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* ========== PAGINATION ========== */
+.pagination .page-item.active .page-link {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #212529;
+    font-weight: bold;
+}
+
+.pagination .page-link {
+    color: #212529;
+}
+
+.pagination .page-link:hover {
+    color: #212529;
+    background-color: #ffeeba;
+}
+
+/* ========== BREADCRUMB ========== */
+.breadcrumb-item + .breadcrumb-item::before {
+    color: rgba(255,255,255,0.5);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .hero-section h1 {
+        font-size: 1.75rem;
+    }
+
+    .display-5 {
+        font-size: 1.75rem;
+    }
+}
