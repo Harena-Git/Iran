@@ -17,7 +17,9 @@ services:
       - iran_network
 
   web:
-    image: php:8.1-apache
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: iran_news_web
     ports:
       - "8000:80"
