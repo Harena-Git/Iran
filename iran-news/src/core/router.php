@@ -59,7 +59,7 @@ class Router {
             Session::start();
             
             // Actions publiques (pas besoin d'être connecté)
-            if (isset($parts[1]) && in_array($parts[1], ['login', 'logout'])) {
+            if (isset($parts[1]) && in_array($parts[1], ['login', 'logout', 'register'])) {
                 $this->currentController = 'auth';
                 $this->currentAction = $parts[1];
                 return;
