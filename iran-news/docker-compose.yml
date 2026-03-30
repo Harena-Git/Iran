@@ -1,0 +1,48 @@
+# docker-compose.yml - Iran News
+
+services:
+  db:
+    image: postgres:15
+    container_name: iran_news_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: iran_news
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - iran_network
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: iran_news_web
+    ports:
+      - "8000:80"
+    volumes:
+      - ./public:/var/www/html
+      - ./src:/var/www/src
+      - ./config:/var/www/config
+      - ./templates:/var/www/templates
+      - ./tinymce:/var/www/html/tinymce
+      - ./uploads:/var/www/html/uploads
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=postgres
+      - DB_PASSWORD=password
+      - DB_NAME=iran_news
+    networks:
+      - iran_network
+
+volumes:
+  postgres_data:
+
+networks:
+  iran_network:
+    driver: bridge

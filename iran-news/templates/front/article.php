@@ -1,0 +1,61 @@
+<?php 
+    Session::start();
+    include TEMPLATES_PATH . '/layout/header.php'; 
+?>
+
+<article>
+    <h2><?php echo htmlspecialchars($article['title']); ?></h2>
+
+    <div>
+        <span>
+            <a href="/category/<?php echo htmlspecialchars($article['category_slug'] ?? '#'); ?>">
+                <?php echo htmlspecialchars($article['category_name'] ?? 'Sans catégorie'); ?>
+            </a>
+        </span>
+        | <time datetime="<?php echo date('Y-m-d', strtotime($article['published_at'])); ?>">
+            <?php echo date('d F Y', strtotime($article['published_at'])); ?>
+        </time>
+        | Par <?php echo htmlspecialchars($article['author_name'] ?? 'Anonyme'); ?>
+    </div>
+
+    <!-- Images de l'article avec attribut alt pour le SEO -->
+    <?php if (!empty($images)): ?>
+        <section>
+            <h3>Illustrations</h3>
+            <?php foreach ($images as $img): ?>
+                <figure>
+                    <img src="<?php echo htmlspecialchars($img['url']); ?>" 
+                         alt="<?php echo htmlspecialchars($img['alt'] ?? $article['title'] . ' - Iran News'); ?>"
+                         width="800" height="auto"
+                         style="max-width:100%; height:auto;">
+                    <?php if (!empty($img['alt'])): ?>
+                        <figcaption><?php echo htmlspecialchars($img['alt']); ?></figcaption>
+                    <?php endif; ?>
+                </figure>
+            <?php endforeach; ?>
+        </section>
+    <?php endif; ?>
+
+    <!-- Contenu HTML issu de TinyMCE (affiché en brut car déjà en HTML) -->
+    <section>
+        <h3>Contenu de l'article</h3>
+        <?php echo $article['content']; ?>
+    </section>
+
+    <?php if (!empty($tags)): ?>
+        <section>
+            <h3>Tags</h3>
+            <ul>
+                <?php foreach ($tags as $tag): ?>
+                    <li><span><?php echo htmlspecialchars($tag['name']); ?></span></li>
+                <?php endforeach; ?>
+            </ul>
+        </section>
+    <?php endif; ?>
+
+    <nav aria-label="Retour">
+        <a href="/">← Retour à l'accueil</a>
+    </nav>
+</article>
+
+<?php include TEMPLATES_PATH . '/layout/footer.php'; ?>
