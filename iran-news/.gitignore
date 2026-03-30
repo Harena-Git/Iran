@@ -1,0 +1,42 @@
+# Ignore les fichiers sensibles et les dossiers inutiles
+
+# Variables d'environnement
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Système
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Uploads temporaires
+uploads/images/*
+!uploads/images/.gitkeep
+
+# Cache PHP
+.cache/
+
+# Composer
+vendor/
+composer.lock
+
+# Node modules (si utilisation de npm)
+node_modules/
+package-lock.json
+
+# Dépôt Git
+.git/
+
+# Docker
+.dockerignore

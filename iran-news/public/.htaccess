@@ -1,0 +1,25 @@
+# Rewriting des URLs pour le routeur PHP
+
+<IfModule mod_rewrite.c>
+    # Activation du rewriting
+    RewriteEngine On
+    
+    # Base de l'application (à adapter si application dans sous-dossier)
+    RewriteBase /
+    
+    # Si la requête n'est pas un fichier existant
+    RewriteCond %{REQUEST_FILENAME} !-f
+    
+    # Si la requête n'est pas un répertoire existant
+    RewriteCond %{REQUEST_FILENAME} !-d
+    
+    # Redirige toutes les requêtes vers index.php
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Headers de sécurité
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+</IfModule>
