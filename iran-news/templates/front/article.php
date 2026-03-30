@@ -12,8 +12,8 @@
                 <?php echo htmlspecialchars($article['category_name'] ?? 'Sans catégorie'); ?>
             </a>
         </span>
-        | <time datetime="<?php echo date('Y-m-d', strtotime($article['published_at'])); ?>">
-            <?php echo date('d F Y', strtotime($article['published_at'])); ?>
+        | <time datetime="<?php echo !empty($article['published_at']) ? date('Y-m-d', strtotime($article['published_at'])) : ''; ?>">
+            <?php echo !empty($article['published_at']) ? date('d F Y', strtotime($article['published_at'])) : 'Non publié'; ?>
         </time>
         | Par <?php echo htmlspecialchars($article['author_name'] ?? 'Anonyme'); ?>
     </div>

@@ -28,7 +28,7 @@
 
         <div>
             <label for="content">Contenu * (éditeur TinyMCE)</label>
-            <textarea id="content" name="content" rows="15" required><?php echo htmlspecialchars($article['content'] ?? ''); ?></textarea>
+            <textarea id="content" name="content" rows="15"><?php echo htmlspecialchars($article['content'] ?? ''); ?></textarea>
         </div>
 
         <div>
@@ -104,7 +104,12 @@
             license_key: 'gpl',
             language: 'fr_FR',
             menubar: true,
-            branding: false
+            branding: false,
+            setup: function(editor) {
+                editor.on('change', function() {
+                    editor.save();
+                });
+            }
         });
     </script>
 </body>

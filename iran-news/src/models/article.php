@@ -206,21 +206,59 @@ class Article {
     }
 
     /**
-     * Crée un slug à partir d'une chaîne
+     * Crée un slug unique à partir d'une chaîne
      */
     private function slugify($str) {
         $str = mb_strtolower(trim($str), 'UTF-8');
         $str = preg_replace('/[^\p{L}\p{N}_\-\.\ ]/u', '', $str);
         $str = preg_replace('/[\s\-\.]+/', '-', $str);
         $str = trim($str, '-');
-        return $str;
+        
+        // Vérifier si le slug existe déjà et ajouter un suffixe si nécessaire
+        $baseSlug = $str;
+        $counter = 1;
+        $uniqueSlug = $baseSlug;
+        
+        while ($this->slugExists($uniqueSlug)) {
+            $uniqueSlug = $baseSlug . '-' . $counter;
+            $counter++;
+        }
+        
+        return $uniqueSlug;
     }
 
     /**
-     * Met à jour le slug d'un article
+     * Vérifie si un slug existe déjà
+     */
+    private function slugExists($slug, $excludeId = null) {
+        $sql = 'SELECT COUNT(*) as count FROM articles WHERE slug = :slug';
+        $params = [':slug' => $slug];
+        
+        if ($excludeId !== null) {
+            $sql .= ' AND id != :id';
+            $params[':id'] = $excludeId;
+        }
+        
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute($params);
+        $result = $stmt->fetch();
+        return $result['count'] > 0;
+    }
+
+    /**
+     * Met à jour le slug d'un article avec vérification d'unicité
      */
     private function updateSlug($id, $title) {
-        $slug = $this->slugify($title);
+        $baseSlug = $this->slugify($title);
+        
+        // Si le slug généré existe déjà pour un autre article, ajouter un suffixe
+        $counter = 1;
+        $slug = $baseSlug;
+        while ($this->slugExists($slug, $id)) {
+            $slug = $baseSlug . '-' . $counter;
+            $counter++;
+        }
+        
         $stmt = $this->db->prepare('UPDATE articles SET slug = :slug WHERE id = :id');
         $stmt->execute([':slug' => $slug, ':id' => $id]);
     }
