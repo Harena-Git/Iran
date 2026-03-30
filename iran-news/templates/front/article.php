@@ -12,8 +12,8 @@
                 <?php echo htmlspecialchars($article['category_name'] ?? 'Sans catégorie'); ?>
             </a>
         </span>
-        | <time datetime="<?php echo date('Y-m-d', strtotime($article['published_at'])); ?>">
-            <?php echo date('d F Y', strtotime($article['published_at'])); ?>
+        | <time datetime="<?php echo !empty($article['published_at']) ? date('Y-m-d', strtotime($article['published_at'])) : ''; ?>">
+            <?php echo !empty($article['published_at']) ? date('d F Y', strtotime($article['published_at'])) : 'Non publié'; ?>
         </time>
         | Par <?php echo htmlspecialchars($article['author_name'] ?? 'Anonyme'); ?>
     </div>
@@ -25,9 +25,10 @@
             <?php foreach ($images as $img): ?>
                 <figure>
                     <img src="<?php echo htmlspecialchars($img['url']); ?>" 
-                         alt="<?php echo htmlspecialchars($img['alt'] ?? $article['title'] . ' - Iran News'); ?>"
+                         alt="<?php echo htmlspecialchars($img['alt'] ?? 'Illustration: ' . $article['title'] . ' - Iran News'); ?>"
                          width="800" height="auto"
-                         style="max-width:100%; height:auto;">
+                         style="max-width:100%; height:auto;"
+                         onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<p class=\'image-error\'>Image non disponible: <?php echo htmlspecialchars($img['alt'] ?? $article['title']); ?></p>');">
                     <?php if (!empty($img['alt'])): ?>
                         <figcaption><?php echo htmlspecialchars($img['alt']); ?></figcaption>
                     <?php endif; ?>

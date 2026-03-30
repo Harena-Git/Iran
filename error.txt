@@ -1,3 +1,8 @@
-http://localhost:8000/admin
 
-Fatal error: Cannot redeclare getEnv() in /var/www/config/database.php on line 19
+Warning: mkdir(): Permission denied in /var/www/src/controllers/admin.php on line 179
+
+Warning: move_uploaded_file(/var/www/uploads/img_69cad927b77f7.jpeg): Failed to open stream: No such file or directory in /var/www/src/controllers/admin.php on line 196
+
+Warning: move_uploaded_file(): Unable to move "/tmp/phpczRMG4" to "/var/www/uploads/img_69cad927b77f7.jpeg" in /var/www/src/controllers/admin.php on line 196
+
+Warning: Cannot modify header information - headers already sent by (output started at /var/www/src/controllers/admin.php:179) in /var/www/src/controllers/admin.php on line 127

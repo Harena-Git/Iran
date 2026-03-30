@@ -7,13 +7,16 @@
     # Base de l'application (à adapter si application dans sous-dossier)
     RewriteBase /
     
-    # Si la requête n'est pas un fichier existant
-    RewriteCond %{REQUEST_FILENAME} !-f
+    # Ne pas réécrire les fichiers statiques (CSS, JS, images, etc.)
+    RewriteCond %{REQUEST_URI} \.(css|js|png|jpg|jpeg|gif|ico|svg|webp|woff|woff2|ttf|otf|eot)$ [NC]
+    RewriteRule .* - [L]
     
-    # Si la requête n'est pas un répertoire existant
-    RewriteCond %{REQUEST_FILENAME} !-d
+    # Ne pas réécrire si la requête est pour un fichier existant
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule .* - [L]
     
-    # Redirige toutes les requêtes vers index.php
+    # Redirige toutes les autres requêtes vers index.php
     RewriteRule ^(.*)$ index.php [QSA,L]
 </IfModule>
 

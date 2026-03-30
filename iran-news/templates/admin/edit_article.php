@@ -6,6 +6,7 @@
     <title><?php echo htmlspecialchars($title); ?> - Iran News</title>
     <!-- TinyMCE local -->
     <script src="/tinymce/tinymce/js/tinymce/tinymce.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <h1><?php echo htmlspecialchars($title); ?></h1>
@@ -27,7 +28,7 @@
 
         <div>
             <label for="content">Contenu * (éditeur TinyMCE)</label>
-            <textarea id="content" name="content" rows="15" required><?php echo htmlspecialchars($article['content'] ?? ''); ?></textarea>
+            <textarea id="content" name="content" rows="15"><?php echo htmlspecialchars($article['content'] ?? ''); ?></textarea>
         </div>
 
         <div>
@@ -58,8 +59,9 @@
                 <?php foreach ($articleImages as $img): ?>
                     <div style="display:inline-block; margin:5px; text-align:center;">
                         <img src="<?php echo htmlspecialchars($img['url']); ?>" 
-                             alt="<?php echo htmlspecialchars($img['alt']); ?>" 
-                             style="max-width:150px; max-height:150px;">
+                             alt="<?php echo htmlspecialchars($img['alt'] ?? 'Illustration article ' . ($article['title'] ?? '')); ?>"
+                             style="max-width:150px; max-height:150px;"
+                             onerror="this.style.display='none'; this.insertAdjacentHTML('afterend', '<p class=\'image-error\'>Image non disponible: <?php echo htmlspecialchars($img['alt'] ?? ''); ?></p>');">
                         <br>
                         <small><?php echo htmlspecialchars($img['alt']); ?></small>
                     </div>
@@ -103,7 +105,12 @@
             license_key: 'gpl',
             language: 'fr_FR',
             menubar: true,
-            branding: false
+            branding: false,
+            setup: function(editor) {
+                editor.on('change', function() {
+                    editor.save();
+                });
+            }
         });
     </script>
 </body>
