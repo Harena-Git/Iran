@@ -108,6 +108,50 @@ class AdminController {
     }
 
     /**
+     * Action : Créer un utilisateur
+     */
+    public function adduserAction($params) {
+        $error = null;
+        $success = null;
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!Session::verifyCSRFToken($_POST['csrf_token'] ?? '')) {
+                die('Token CSRF invalide');
+            }
+
+            $username = trim($_POST['username'] ?? '');
+            $email = trim($_POST['email'] ?? '');
+            $password = $_POST['password'] ?? '';
+            $role = in_array($_POST['role'] ?? 'editor', ['admin', 'editor']) ? $_POST['role'] : 'editor';
+
+            if (!$username || !$email || !$password) {
+                $error = 'Tous les champs sont obligatoires';
+            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $error = 'Format email invalide';
+            } elseif (strlen($password) < 6) {
+                $error = 'Le mot de passe doit faire au moins 6 caractères';
+            } else {
+                $result = $this->userModel->create($username, $email, $password, $role);
+                if ($result) {
+                    $success = 'Utilisateur créé avec succès';
+                } else {
+                    $error = 'Erreur lors de la création (username ou email déjà existant)';
+                }
+            }
+        }
+
+        $csrfToken = Session::generateCSRFToken();
+
+        $data = [
+            'title' => 'Ajouter un utilisateur',
+            'csrf_token' => $csrfToken,
+            'error' => $error,
+            'success' => $success
+        ];
+        $this->render('admin/add_user', $data);
+    }
+
+    /**
      * Affiche une vue
      */
     private function render($view, $data = []) {
