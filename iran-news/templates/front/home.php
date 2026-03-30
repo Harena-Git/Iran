@@ -3,52 +3,51 @@
     include TEMPLATES_PATH . '/layout/header.php'; 
 ?>
 
-<div class="container">
-    <section class="hero">
+<div>
+    <section>
         <h1>Bienvenue sur Iran News</h1>
         <p>Les dernières actualités sur l'Iran</p>
     </section>
 
-    <section class="articles">
+    <section>
         <h2>Articles récents</h2>
         
         <?php if (empty($articles)): ?>
             <p>Aucun article disponible pour le moment.</p>
         <?php else: ?>
-            <div class="articles-grid">
+            <div>
                 <?php foreach ($articles as $article): ?>
-                    <article class="article-card">
+                    <article>
                         <h3><a href="/article/<?php echo htmlspecialchars($article['slug']); ?>">
                             <?php echo htmlspecialchars($article['title']); ?>
                         </a></h3>
-                        <p class="article-meta">
-                            <span class="category">
+                        <p>
+                            <span>
                                 <a href="/category/<?php echo htmlspecialchars($article['category_slug']); ?>">
                                     <?php echo htmlspecialchars($article['category_name'] ?? 'Sans catégorie'); ?>
                                 </a>
                             </span>
-                            <span class="date"><?php echo date('d/m/Y', strtotime($article['published_at'])); ?></span>
-                            <span class="author">Par <?php echo htmlspecialchars($article['author_name'] ?? 'Anonyme'); ?></span>
+                            <span><?php echo date('d/m/Y', strtotime($article['published_at'])); ?></span>
+                            <span>Par <?php echo htmlspecialchars($article['author_name'] ?? 'Anonyme'); ?></span>
                         </p>
-                        <p class="excerpt"><?php echo htmlspecialchars($article['excerpt']); ?></p>
-                        <a href="/article/<?php echo htmlspecialchars($article['slug']); ?>" class="read-more">Lire l'article</a>
+                        <p><?php echo htmlspecialchars($article['excerpt']); ?></p>
+                        <a href="/article/<?php echo htmlspecialchars($article['slug']); ?>">Lire l'article</a>
                     </article>
                 <?php endforeach; ?>
             </div>
 
-            <!-- Pagination -->
             <?php if ($totalPages > 1): ?>
-                <div class="pagination">
+                <div>
                     <?php if ($currentPage > 1): ?>
-                        <a href="/?page=1" class="btn">« Première</a>
-                        <a href="/?page=<?php echo $currentPage - 1; ?>" class="btn">‹ Précédente</a>
+                        <a href="/?page=1">« Première</a>
+                        <a href="/?page=<?php echo $currentPage - 1; ?>">‹ Précédente</a>
                     <?php endif; ?>
 
-                    <span class="page-info">Page <?php echo $currentPage; ?> sur <?php echo $totalPages; ?></span>
+                    <span>Page <?php echo $currentPage; ?> sur <?php echo $totalPages; ?></span>
 
                     <?php if ($currentPage < $totalPages): ?>
-                        <a href="/?page=<?php echo $currentPage + 1; ?>" class="btn">Suivante ›</a>
-                        <a href="/?page=<?php echo $totalPages; ?>" class="btn">Dernière »</a>
+                        <a href="/?page=<?php echo $currentPage + 1; ?>">Suivante ›</a>
+                        <a href="/?page=<?php echo $totalPages; ?>">Dernière »</a>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
